@@ -1,0 +1,6 @@
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\bin\Debug\Function_4.exe.config
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\bin\Debug\Function_4.exe
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\bin\Debug\Function_4.pdb
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\obj\Debug\Function_4.csprojResolveAssemblyReference.cache
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\obj\Debug\Function_4.exe
+D:\programs\GIT_C#\Function 4-th\Function_4\Function_4\obj\Debug\Function_4.pdb
