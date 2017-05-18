@@ -19,12 +19,30 @@ namespace Function_4
         public abstract string ToString();
         public abstract Function Diff();       
     }
-/*
-    class constanta:Function
+
+    class constanta : Function
     {
-        bool plus;
-    }
-    */
+        bool plus; // add tast on sub
+
+        public constanta(double Arg)
+        {
+           // if(Arg<0)
+            arg = Arg;
+            str = Convert.ToString(Arg);
+        }
+        public constanta(string strArg)
+        {
+
+            arg = 0;
+            str = strArg;
+            plus = true;
+        }
+
+    public override double Culc(double x) { arg = x; return arg; }
+    public override string ToString() {return ""; } // add tast on sub
+    public override Function Diff() { Function x = new sin(0); return x; }// reset function
+}
+    
     
     class sin : Function
     {
