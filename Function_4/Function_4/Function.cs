@@ -10,40 +10,65 @@ namespace Function_4
     {
         public double arg;
         public string str;
-        public bool plus { get; set; }
+        public bool constanta;
+      //  public bool plus { get; set; }
 
         public Function()
         {
         }
-        public abstract double Culc(double x);
+        public abstract double Culc();
         public abstract string ToString();
         public abstract Function Diff();       
     }
 
-    class constanta : Function
+    class Func : Function
     {
-        bool plus; // add tast on sub
+        public bool plus { get; protected set; } // add tast on sub
 
-        public constanta(double Arg)
+        public Func(double Arg)
         {
-           // if(Arg<0)
-            arg = Arg;
-            str = Convert.ToString(Arg);
+            if (Arg < 0) { plus = false; arg = Arg * -1; }
+            else { plus = true; arg = Arg; }
+            str = Convert.ToString(arg);
+            constanta = true;
         }
-        public constanta(string strArg)
-        {
 
+        public Func(string strArg)
+        {
             arg = 0;
             str = strArg;
             plus = true;
+            constanta = false;
+        }
+        public Func(string strArg, double Arg)
+        {
+            arg = Arg;
+            if (arg < 0) { arg *= -1; plus = false; } //test on sign
+            else plus = true;
+            str = strArg;
+            constanta = false;
+        }
+        public void equally(double x)
+        { if (x < 0) { plus = false; arg = x * -1; } // test on sign
+            else { arg = x; arg = x; }
         }
 
-    public override double Culc(double x) { arg = x; return arg; }
-    public override string ToString() {return ""; } // add tast on sub
-    public override Function Diff() { Function x = new sin(0); return x; }// reset function
+    public override double Culc() { if (plus) return arg; else return arg*=-1; }
+    public override string ToString() {return str; } // add tast on sub
+    public override Function Diff() { Function x = new Func("1",1); return x; }// reset function
 }
-    
-    
+    /*
+    class constanta : Func
+    {
+        public constanta(double x)
+        {
+            if (x < 0) { plus = false; arg = x * -1; }
+            else { plus = true; arg = x; }
+            str = Convert.ToString(arg);
+        }
+    }
+    */
+    /*
     class sin : Function
     {
         public sin(string strArg)
@@ -111,6 +136,7 @@ namespace Function_4
             return diff;
         }
     }
+    */
     /*
     class cos : Function
     {
