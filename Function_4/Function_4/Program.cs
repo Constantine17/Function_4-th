@@ -14,7 +14,7 @@ namespace Function_4
             var FuncX = new Func("x",5);
             var FuncY = new Func("y", -1);
             var Constanta = new Func(17);
-            FuncY.equally(-9);
+            var sinx = new sin(FuncX);
 
             ///consta
             Console.WriteLine("===================================================");
@@ -23,18 +23,40 @@ namespace Function_4
             Console.WriteLine("arg = {0}", FuncX.arg);
             Console.WriteLine("plus = {0}", FuncX.plus);
             Console.WriteLine("culc = {0}", FuncX.Culc());
+            Console.WriteLine("ToString = {0}", FuncX.ToString());
             Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("FuncY:");
             Console.WriteLine("str = {0}", FuncY.str);
             Console.WriteLine("arg = {0}", FuncY.arg);
             Console.WriteLine("plus = {0}", FuncY.plus);
             Console.WriteLine("culc = {0}", FuncY.Culc());
+            Console.WriteLine("ToString = {0}", FuncY.ToString());
             Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("Constanta:");
             Console.WriteLine("str = {0}", Constanta.str);
             Console.WriteLine("arg = {0}", Constanta.arg);
             Console.WriteLine("plus = {0}", Constanta.plus);
             Console.WriteLine("culc = {0}", Constanta.Culc());
+            Console.WriteLine("ToString = {0}", Constanta.ToString());
+            Console.WriteLine("===================================================");
+            Console.WriteLine("----------------------------------------------------");
+            Console.WriteLine("Sin:");
+            Console.WriteLine("str = {0}", sinx.str);
+            Console.WriteLine("arg = {0}", sinx.arg);
+            Console.WriteLine("plus = {0}", sinx.plus);
+            Console.WriteLine("culc = {0}", sinx.Culc());
+            Console.WriteLine("ToString = {0}", sinx.ToString());
+            Console.WriteLine("===================================================");
+
+            var Constanta1 = new Func("x",2);
+            var Constanta2 = new Func("y",-1);
+            var Power = new pow(Constanta1,Constanta2);
+            Console.WriteLine("Pow:");
+            Console.WriteLine("str = {0}", Power.str);
+            Console.WriteLine("arg = {0}", Power.arg);
+            Console.WriteLine("plus = {0}", Power.plus);
+            Console.WriteLine("culc = {0}", Power.Culc());
+            Console.WriteLine("ToString = {0}", Power.ToString());
             Console.WriteLine("===================================================");
             ///
 
