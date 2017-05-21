@@ -266,6 +266,7 @@ namespace Function_4
         bool R_plus;
         double R_arg;
         string R_str;
+        bool L_constnta, R_constanta;
         public sub(Func L, Func R)
         {
             plus = L.plus;
@@ -275,6 +276,9 @@ namespace Function_4
             R_plus = R.plus;
             R_arg = R.arg;
             R_str = R.str;
+
+            L_constnta = L.constanta;
+            R_constanta = R.constanta;
         }
         public override double Culc()
         {
@@ -286,9 +290,16 @@ namespace Function_4
         public override string ToString()
         {
             string _string = "";
-            if (plus) _string += str; else _string += "-" + str;
-            if (R_plus) _string += "-" + R_str; else _string += "+" + R_str;
-       
+            if (L_constnta)
+            {
+                if (plus) _string += str; else _string += "-" + str;
+            }
+            else _string += str;
+            if (R_constanta)
+            {
+                if (R_plus) _string += "-" + R_str; else _string += "+" + R_str;
+            }
+            else _string += "-" + R_str;
             return _string;
         }
         public override Function Diff()
@@ -302,7 +313,8 @@ namespace Function_4
         bool R_plus;
         double R_arg;
         string R_str;
-        bool constant;
+        bool L_constnta, R_constanta;
+
         public mul(Func L, Func R)
         {
             plus = L.plus;
@@ -312,7 +324,11 @@ namespace Function_4
             R_plus = R.plus;
             R_arg = R.arg;
             R_str = R.str;
-            this.constant = R.constanta;
+
+
+            L_constnta = L.constanta;
+            R_constanta = R.constanta;
+
         }
         public override double Culc()
         {
@@ -324,14 +340,71 @@ namespace Function_4
         public override string ToString()
         {
             string _string = "";
-            if (!this.constant)
-            {
-                _string = str + R_str;
+            if(L_constnta&&R_constanta) {
+                if (plus) _string += str; else _string += "-" + str;
+                _string += "*";
+                if (R_plus) _string += R_str; else _string += "(-" + R_str+")";
             }
-            else
+            else if (R_constanta)
             {
+                _string += str + "*";
+                if (R_plus) _string += R_str; else _string += "(-" + R_str + ")";
+            }
+            else _string = str + R_str;
+            return _string;
+        }
+        public override Function Diff()
+        {
+            Func f = new Func(1); // add diff!!!
+            return f;
+        }
+    }
+    class div : Function
+    {
+        bool R_plus;
+        double R_arg;
+        string R_str;
+        bool L_constnta, R_constanta;
 
+        public div(Func L, Func R)
+        {
+            plus = L.plus;
+            arg = L.arg;
+            str = L.str;
+
+            R_plus = R.plus;
+            R_arg = R.arg;
+            R_str = R.str;
+
+
+            L_constnta = L.constanta;
+            R_constanta = R.constanta;
+
+        }
+        public override double Culc()
+        {
+            double L, R;
+            if (plus) L = arg; else L = -arg;
+            if (R_plus) R = R_arg; else R = -R_arg;
+            return L / R;
+        }
+        public override string ToString()
+        {
+            string _string = "";
+            if (L_constnta && R_constanta)
+            {
+                _string = "(";
+                if (plus) _string += str; else _string += "-" + str;
+                _string += "/";
+                if (R_plus) _string += R_str; else _string += "-" + R_str;
+                _string += ")";
             }
+            else if (R_constanta)
+            {
+                _string += str + "/";
+                if (R_plus) _string += R_str; else _string += "-" + R_str;
+            }
+            else _string = str +"/"+ R_str;
             return _string;
         }
         public override Function Diff()

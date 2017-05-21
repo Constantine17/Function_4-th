@@ -48,8 +48,8 @@ namespace Function_4
             Console.WriteLine("ToString = {0}", sinx.ToString());
             Console.WriteLine("===================================================");
 
-            var Constanta1 = new Func(-2);
-            var Constanta2 = new Func(1);
+            var Constanta1 = new Func("y",-2);
+            var Constanta2 = new Func(-1);
             var Power = new pow(Constanta1,Constanta2);
             Console.WriteLine("Pow:");
             Console.WriteLine("str = {0}", Power.str);
@@ -81,6 +81,14 @@ namespace Function_4
             Console.WriteLine("plus = {0}", MUL.plus);
             Console.WriteLine("culc = {0}", MUL.Culc());
             Console.WriteLine("ToString = {0}", MUL.ToString());
+            Console.WriteLine("----------------------------------------------------");
+            var DIV = new div(Constanta1, Constanta2);
+            Console.WriteLine("mul:");
+            Console.WriteLine("str = {0}", DIV.str);
+            Console.WriteLine("arg = {0}", DIV.arg);
+            Console.WriteLine("plus = {0}", DIV.plus);
+            Console.WriteLine("culc = {0}", DIV.Culc());
+            Console.WriteLine("ToString = {0}", DIV.ToString());
             Console.WriteLine("----------------------------------------------------");
             ///
 
