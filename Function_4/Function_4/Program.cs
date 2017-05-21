@@ -48,8 +48,8 @@ namespace Function_4
             Console.WriteLine("ToString = {0}", sinx.ToString());
             Console.WriteLine("===================================================");
 
-            var Constanta1 = new Func("x",2);
-            var Constanta2 = new Func("y",-1);
+            var Constanta1 = new Func(-2);
+            var Constanta2 = new Func(1);
             var Power = new pow(Constanta1,Constanta2);
             Console.WriteLine("Pow:");
             Console.WriteLine("str = {0}", Power.str);
@@ -57,9 +57,38 @@ namespace Function_4
             Console.WriteLine("plus = {0}", Power.plus);
             Console.WriteLine("culc = {0}", Power.Culc());
             Console.WriteLine("ToString = {0}", Power.ToString());
-            Console.WriteLine("===================================================");
+            Console.WriteLine("----------------------------------------------------");
+            var ADD = new add(Constanta1, Constanta2);
+            Console.WriteLine("add:");
+            Console.WriteLine("str = {0}", ADD.str);
+            Console.WriteLine("arg = {0}", ADD.arg);
+            Console.WriteLine("plus = {0}", ADD.plus);
+            Console.WriteLine("culc = {0}", ADD.Culc());
+            Console.WriteLine("ToString = {0}", ADD.ToString());
+            Console.WriteLine("----------------------------------------------------");
+            var SUB = new sub(Constanta1, Constanta2);
+            Console.WriteLine("sub:");
+            Console.WriteLine("str = {0}", SUB.str);
+            Console.WriteLine("arg = {0}", SUB.arg);
+            Console.WriteLine("plus = {0}", SUB.plus);
+            Console.WriteLine("culc = {0}", SUB.Culc());
+            Console.WriteLine("ToString = {0}", SUB.ToString());
+            Console.WriteLine("----------------------------------------------------");
+            var MUL = new mul(Constanta1, Constanta2);
+            Console.WriteLine("mul:");
+            Console.WriteLine("str = {0}", MUL.str);
+            Console.WriteLine("arg = {0}", MUL.arg);
+            Console.WriteLine("plus = {0}", MUL.plus);
+            Console.WriteLine("culc = {0}", MUL.Culc());
+            Console.WriteLine("ToString = {0}", MUL.ToString());
+            Console.WriteLine("----------------------------------------------------");
             ///
 
+            Console.WriteLine("===================================================");
+            Console.WriteLine("===================================================");
+            Console.WriteLine("ALL SRING:");
+            
+            Console.WriteLine("===================================================");
             /*
             Console.WriteLine(fun.ToString());
             Function d = fun.Diff();
