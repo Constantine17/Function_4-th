@@ -46,6 +46,9 @@ namespace Function_4
             Console.WriteLine("plus = {0}", sinx.plus);
             Console.WriteLine("culc = {0}", sinx.Culc());
             Console.WriteLine("ToString = {0}", sinx.ToString());
+            var diffsin = sinx.Diff();
+            Console.WriteLine("Diff = {0}", diffsin.ToString());
+            Console.WriteLine("Diff = {0}", diffsin.Culc());
             Console.WriteLine("===================================================");
 
             var Constanta1 = new Func("y",-2);
@@ -90,9 +93,19 @@ namespace Function_4
             Console.WriteLine("culc = {0}", DIV.Culc());
             Console.WriteLine("ToString = {0}", DIV.ToString());
             Console.WriteLine("----------------------------------------------------");
+
             ///
 
             Console.WriteLine("===================================================");
+            var doublefunc = new tan(sinx);
+            Console.WriteLine("tan:");
+            Console.WriteLine("str = {0}", doublefunc.str);
+            Console.WriteLine("arg = {0}", doublefunc.arg);
+            Console.WriteLine("plus = {0}", doublefunc.plus);
+            Console.WriteLine("culc = {0}", doublefunc.Culc());
+            Console.WriteLine("ToString = {0}", doublefunc.Diff().ToString());
+            //Console.WriteLine("Diff = {0}", doublefunc.Diff().arg);
+            Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("===================================================");
             Console.WriteLine("ALL SRING:");
             
