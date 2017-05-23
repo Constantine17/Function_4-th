@@ -13,7 +13,7 @@ namespace Function_4
             Console.WriteLine("begin");
             var FuncX = new Func("x",5);
             var FuncY = new Func("y", -1);
-            var Constanta = new Func(17);
+            var Constanta = new Func(-17);
             var sinx = new sin(FuncX);
 
             ///consta
@@ -97,13 +97,15 @@ namespace Function_4
             ///
 
             Console.WriteLine("===================================================");
-            var doublefunc = new tan(sinx);
-            Console.WriteLine("tan:");
+            var doublefunc = new ctan(sinx);
+            Console.WriteLine("ctan:");
             Console.WriteLine("str = {0}", doublefunc.str);
             Console.WriteLine("arg = {0}", doublefunc.arg);
             Console.WriteLine("plus = {0}", doublefunc.plus);
             Console.WriteLine("culc = {0}", doublefunc.Culc());
-            Console.WriteLine("ToString = {0}", doublefunc.Diff().ToString());
+
+            Console.WriteLine("ToString Diff = {0}", doublefunc.Diff().ToString());
+            Console.WriteLine("Culcdiff = {0}", doublefunc.Diff().Culc());
             //Console.WriteLine("Diff = {0}", doublefunc.Diff().arg);
             Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("===================================================");

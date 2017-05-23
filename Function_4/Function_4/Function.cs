@@ -30,16 +30,18 @@ namespace Function_4
 
         public Func(double Arg)
         {
+            _culc = Arg;
+            _string = Convert.ToString(_culc);
             if (Arg < 0) { plus = false; arg = Arg * -1; }
             else { plus = true; arg = Arg; }
             str = Convert.ToString(arg);
-            _string = str;
             constanta = true;
         }
 
         public Func(string strArg)
         {
             arg = 0;
+            _culc = 0;
             str = strArg;
             _string = str;
             plus = true;
@@ -48,6 +50,7 @@ namespace Function_4
         public Func(string strArg, double Arg)
         {
             arg = Arg;
+            _culc = arg;
             if (arg < 0) { arg *= -1; plus = false; } //test on sign
             else plus = true;
             str = strArg;
@@ -59,8 +62,8 @@ namespace Function_4
             else { arg = x; arg = x; }
         }
 
-    public override double Culc() { if (plus) return arg; else return arg*=-1; }
-    public override string ToString() { return str;} // add tast on sub
+    public override double Culc() { return _culc; }
+    public override string ToString() { return _string;} // add tast on sub
     public override Function Diff() {
             Function x;
             if (constanta) x = new Func(0);
@@ -136,10 +139,15 @@ namespace Function_4
         public override string ToString() { return _string; }
         public override Function Diff()
         {
+            double mid;
+
             Function c = new Func(2);
             Function x = new cos(tanx);
-            
-            Function f = new pow(x,c);
+            mid = x.Culc();
+            if (mid < 0) { x.arg = -mid; x.plus = false; } else { x.arg = mid; x.plus = true; }
+            Function f = new pow(x, c);
+            mid = f.Culc();
+            if (mid < 0) { f.arg = -mid; f.plus = false; } else { f.arg = mid; f.plus = true; }
             c = new Func(1);
             f = new div(c, f);
             return f;
@@ -147,16 +155,16 @@ namespace Function_4
     }
     class ctan : Function
     {
+        Function ctanx;
         public ctan(Function x)
         {
+            ctanx = x;
             plus = x.plus;
             arg = x.arg;
             str = x.str;
             // toString
             _string = "ctan (" + str + ")";
-
-            // culc
-
+           
         }
         public override double Culc()
         {
@@ -166,28 +174,41 @@ namespace Function_4
         public override string ToString() { return _string; }
         public override Function Diff()
         {
+            double mid;
 
-            Function f = new Func(1); // add diff!!!
+            Function c = new Func(2);
+            Function x = new sin(ctanx);
+            mid = x.Culc();
+            if (mid < 0) { x.arg = -mid; x.plus = false; } else { x.arg = mid; x.plus = true; }
+            Function f = new pow(x, c);
+            mid = f.Culc();
+            if (mid < 0) { f.arg = -mid; f.plus = false; } else { f.arg = mid; f.plus = true; }
+            c = new Func(-1);
+            f = new div(c, f);
             return f;
         }
     }
     class exp : Function
     {
+        Function expx;
         public exp(Function x)
         {
+            expx = x;
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+
+            _string = "exp(" + str + ")";
         }
         public override double Culc()
         {
             if (plus) return Math.Exp(arg);
             else return Math.Exp(-arg);
         }
-        public override string ToString() { return "exp(" + str + ")"; }
+        public override string ToString() { return _string; }
         public override Function Diff()
         {
-            Function f = new Func(1); // add diff!!!
+            Function f = new exp(expx); 
             return f;
         }
     }
@@ -209,7 +230,9 @@ namespace Function_4
         public override string ToString() { return _string; }
         public override Function Diff()
         {
-            Function f = new Func(1); // add diff!!!
+            Function c = new Func(1);
+            Function x = new Func(str, arg);
+            Function f = new div(c,x);
             return f;
         }
     }
@@ -228,7 +251,10 @@ namespace Function_4
             pow_arg = y.arg;
             pow_str = y.str;
 
+            // toStrin
             _string = x._string + "^" + y._string;
+
+
         }
         public override double Culc()
         {
