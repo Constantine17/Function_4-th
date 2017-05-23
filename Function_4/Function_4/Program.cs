@@ -11,8 +11,8 @@ namespace Function_4
         static void Main(string[] args)
         {
             Console.WriteLine("begin");
-            var FuncX = new Func("x",5);
-            var FuncY = new Func("y", -1);
+            var FuncX = new Func("x",2);
+            var FuncY = new Func("y", -2);
             var Constanta = new Func(-17);
             var sinx = new sin(FuncX);
 
@@ -51,9 +51,9 @@ namespace Function_4
             Console.WriteLine("Diff = {0}", diffsin.Culc());
             Console.WriteLine("===================================================");
 
-            var Constanta1 = new Func("y",-2);
+            var Constanta1 = new Func(-2);
             var Constanta2 = new Func(-1);
-            var Power = new pow(Constanta1,Constanta2);
+            var Power = new pow(FuncX,FuncY);
             Console.WriteLine("Pow:");
             Console.WriteLine("str = {0}", Power.str);
             Console.WriteLine("arg = {0}", Power.arg);
@@ -61,7 +61,7 @@ namespace Function_4
             Console.WriteLine("culc = {0}", Power.Culc());
             Console.WriteLine("ToString = {0}", Power.ToString());
             Console.WriteLine("----------------------------------------------------");
-            var ADD = new add(Constanta1, Constanta2);
+            var ADD = new add(FuncX, FuncY);
             Console.WriteLine("add:");
             Console.WriteLine("str = {0}", ADD.str);
             Console.WriteLine("arg = {0}", ADD.arg);
@@ -97,7 +97,7 @@ namespace Function_4
             ///
 
             Console.WriteLine("===================================================");
-            var doublefunc = new ctan(sinx);
+            var doublefunc = new ctan(FuncX);
             Console.WriteLine("ctan:");
             Console.WriteLine("str = {0}", doublefunc.str);
             Console.WriteLine("arg = {0}", doublefunc.arg);
@@ -110,7 +110,12 @@ namespace Function_4
             Console.WriteLine("----------------------------------------------------");
             Console.WriteLine("===================================================");
             Console.WriteLine("ALL SRING:");
-            
+            Console.WriteLine("x = {0}", FuncX.Culc());
+            Console.WriteLine("x = {0}", FuncX.Diff().ToString());
+            Console.WriteLine("x = {0}", FuncX.Diff().str);
+            Console.WriteLine("y = {0}", FuncY.Culc());
+            Console.WriteLine("diff = {0}", SUB.Diff().ToString());
+            Console.WriteLine("diff culc = {0}", SUB.Diff().Culc());
             Console.WriteLine("===================================================");
             /*
             Console.WriteLine(fun.ToString());

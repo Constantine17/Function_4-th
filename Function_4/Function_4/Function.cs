@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Function_4
 {
+    /// ||||MAIN CLASS|||| }
     abstract class Function
     {
         public double arg; // number
@@ -23,7 +24,10 @@ namespace Function_4
         public abstract string ToString();
         public abstract Function Diff();       
     }
+    /// ||||MAIN CLASS|||| }
+    /// 
 
+                ///variable adn constanta/// {
     class Func : Function
     {
      //   public bool plus { get; protected set; } // add tast on sub
@@ -66,10 +70,14 @@ namespace Function_4
     public override string ToString() { return _string;} // add tast on sub
     public override Function Diff() {
             Function x;
-            if (constanta) x = new Func(0);
-            else x = new Func(1);
+            if (constanta) { x = new Func(0);}
+            else { x = new Func(1); }
             return x; }// reset function
 }
+    ///variable adn constanta/// }
+
+
+/*sin*/
     class sin : Function
     {
         Function sinx;
@@ -79,6 +87,7 @@ namespace Function_4
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
 
             _string = "sin(" + str + ")";
         }
@@ -93,7 +102,13 @@ namespace Function_4
             Function f = new cos(sinx); 
             return f;
         }
+        public Function Diff(Function argum)
+        {
+            Function f = new cos(argum);
+            return f;
+        }
     }
+/*cos*/
     class cos : Function
     {
         Function cosx;
@@ -103,6 +118,7 @@ namespace Function_4
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
 
             _string = "cos(" + str + ")";
         }
@@ -118,7 +134,14 @@ namespace Function_4
             f.plus = !f.plus; // invert sign
             return f;
         }
+        public Function Diff(Function argum)
+        {
+            Function f = new sin(argum);
+            f.plus = !f.plus; // invert sign
+            return f;
+        }
     }
+/*tan*/
     class tan : Function
     {
         Function tanx;
@@ -128,6 +151,7 @@ namespace Function_4
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
 
             _string = "tan(" + str + ")";
         }
@@ -152,7 +176,23 @@ namespace Function_4
             f = new div(c, f);
             return f;
         }
+        public Function Diff(Function argum)
+        {
+            double mid;
+
+            Function c = new Func(2);
+            Function x = new cos(argum);
+            mid = x.Culc();
+            if (mid < 0) { x.arg = -mid; x.plus = false; } else { x.arg = mid; x.plus = true; }
+            Function f = new pow(x, c);
+            mid = f.Culc();
+            if (mid < 0) { f.arg = -mid; f.plus = false; } else { f.arg = mid; f.plus = true; }
+            c = new Func(1);
+            f = new div(c, f);
+            return f;
+        }
     }
+/*ctan*/
     class ctan : Function
     {
         Function ctanx;
@@ -162,6 +202,7 @@ namespace Function_4
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
             // toString
             _string = "ctan (" + str + ")";
            
@@ -187,7 +228,23 @@ namespace Function_4
             f = new div(c, f);
             return f;
         }
+        public Function Diff(Function argum)
+        {
+            double mid;
+
+            Function c = new Func(2);
+            Function x = new sin(argum);
+            mid = x.Culc();
+            if (mid < 0) { x.arg = -mid; x.plus = false; } else { x.arg = mid; x.plus = true; }
+            Function f = new pow(x, c);
+            mid = f.Culc();
+            if (mid < 0) { f.arg = -mid; f.plus = false; } else { f.arg = mid; f.plus = true; }
+            c = new Func(-1);
+            f = new div(c, f);
+            return f;
+        }
     }
+/*exp*/
     class exp : Function
     {
         Function expx;
@@ -197,6 +254,7 @@ namespace Function_4
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
 
             _string = "exp(" + str + ")";
         }
@@ -211,14 +269,23 @@ namespace Function_4
             Function f = new exp(expx); 
             return f;
         }
+        public Function Diff(Function argum)
+        {
+            Function f = new exp(argum);
+            return f;
+        }
     }
+/*ln*/
     class ln : Function
     {
+        Function lnx;
         public ln(Function x)
         {
+            lnx = x;
             plus = x.plus;
             arg = x.arg;
             str = x.str;
+            constanta = false;
 
             _string = "ln(" + str + ")";
         }
@@ -231,28 +298,48 @@ namespace Function_4
         public override Function Diff()
         {
             Function c = new Func(1);
-            Function x = new Func(str, arg);
-            Function f = new div(c,x);
+
+            Function f = new div(c,lnx);
+            return f;
+        }
+        public Function Diff(Function argum)
+        {
+            Function c = new Func(1);
+            Function f = new div(c, argum);
             return f;
         }
     }
     class pow : Function
     {
+        Function powa;
+        Function powx;
+
         bool pow_plus;
         double pow_arg;
         string pow_str;
-        public pow(Function x, Function y)
-        {
-            plus = x.plus;
-            arg = x.arg;
-            str = x.str;
+        public pow(Function a, Function x)
+        {/*
+            while (true)
+            {
+                if (x.plus && y.plus) {plus = true; break; }
+                if (x.plus && !y.plus) { plus = false; break; }
+                if (!x.plus && y.plus) { plus = false; break; }
+                else plus = true;
+                break;
+            }
+           */
+            powa = a;
+            powx = x;
+            plus = a.plus;
+            arg = a.arg;
+            str = a.str;
 
-            pow_plus = y.plus;
-            pow_arg = y.arg;
-            pow_str = y.str;
+            pow_plus = x.plus;
+            pow_arg = x.arg;
+            pow_str = x.str;
 
             // toStrin
-            _string = x._string + "^" + y._string;
+            _string = a._string + "^" + x._string;
 
 
         }
@@ -266,18 +353,39 @@ namespace Function_4
         public override string ToString() {return _string; }
         public override Function Diff()
         {
-            Function f = new Func(1); // add diff!!!
+
+            Function Ln = new ln(powa);
+            Function ax = new pow(powa,powx);
+            Ln.arg = Ln.Culc();
+            ax.arg = ax.Culc();
+            Function f = new mul(ax,Ln); 
+
+            return f;
+        }
+        public Function Diff(Function x, Function a)
+        {
+            Function Ln = new ln(a);
+            Function ax = new pow(a, x);
+            Ln.arg = Ln.Culc();
+            ax.arg = ax.Culc();
+            Function f = new mul(ax, Ln); 
+
             return f;
         }
     }
     class add : Function
     {
+        Function l;
+        Function r;
+
         bool R_plus;
         double R_arg;
         string R_str;
         bool L_constnta, R_constanta;
         public add(Function L, Function R)
         {
+            l = L;
+            r = R;
             plus = L.plus;
             arg = L.arg;
             str = L.str;
@@ -291,16 +399,20 @@ namespace Function_4
 
 
             _string = "";
-            if (L_constnta)
+            if (L_constnta && R_constanta) _string = Convert.ToString(this.Culc());
+            else
             {
-                if (plus) _string += str; else _string += "-" + str;
+                if (L_constnta)
+                {
+                    if (plus) _string += str; else _string += "-" + str;
+                }
+                else _string += str;
+                if (R_constanta)
+                {
+                    if (R_plus) _string += "+" + R_str; else _string += "-" + R_str;
+                }
+                else _string += "+" + R_str;
             }
-            else _string += str;
-            if (R_constanta)
-            {
-                if (R_plus) _string += "+" + R_str; else _string += "-" + R_str;
-            }
-            else _string += "+" + R_str;
         }
         public override double Culc()
         {
@@ -312,18 +424,32 @@ namespace Function_4
         public override string ToString() { return _string; }
         public override Function Diff()
         {
-            Function f = new Func(1); // add diff!!!
+            Function u = l.Diff();
+            Function v = r.Diff();
+            Function f = new add(u,v);
+            return f;
+        }
+        public Function Diff(Function u, Function v)
+        {
+            u = l.Diff();
+            v = r.Diff();
+            Function f = new add(u, v);
             return f;
         }
     }
     class sub : Function
     {
+        Function l;
+        Function r;
+
         bool R_plus;
         double R_arg;
         string R_str;
         bool L_constnta, R_constanta;
         public sub(Function L, Function R)
         {
+            l = L;
+            r = R;
             plus = L.plus;
             arg = L.arg;
             str = L.str;
@@ -336,16 +462,20 @@ namespace Function_4
             R_constanta = R.constanta;
 
             _string = "";
-            if (L_constnta)
+            if (L_constnta && R_constanta) _string = Convert.ToString(this.Culc());
+            else
             {
-                if (plus) _string += L._string; else _string += "-" + L._string;
+                if (L_constnta)
+                {
+                    if (plus) _string += L._string; else _string += "-" + L._string;
+                }
+                else _string += L._string;
+                if (R_constanta)
+                {
+                    if (R_plus) _string += "-" + R._string; else _string += "+" + R._string;
+                }
+                else _string += "-" + R._string;
             }
-            else _string += L._string;
-            if (R_constanta)
-            {
-                if (R_plus) _string += "-" + R._string; else _string += "+" + R._string;
-            }
-            else _string += "-" + R._string;
         }
         public override double Culc()
         {
@@ -357,7 +487,16 @@ namespace Function_4
         public override string ToString() {return _string;}
         public override Function Diff()
         {
-            Function f = new Func(1); // add diff!!!
+            Function u = l.Diff();
+            Function v = r.Diff();
+            Function f = new sub(u, v);
+            return f;
+        }
+        public Function Diff(Function u, Function v)
+        {
+            u = l.Diff();
+            v = r.Diff();
+            Function f = new sub(u, v);
             return f;
         }
     }
@@ -394,7 +533,7 @@ namespace Function_4
                 _string += L._string + "*";
                 if (R_plus) _string += R._string; else _string += "(-" + R._string + ")";
             }
-            else _string = L._string + R._string;
+            else _string = "("+ L._string+")" +"(" +R._string+")";
         }
         public override double Culc()
         {
